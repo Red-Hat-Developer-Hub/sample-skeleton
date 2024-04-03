@@ -7,7 +7,7 @@ metadata:
   tags:
     - recommended
 spec:
-  owner: user:default/<自分のGitHub ID>
+  owner: user:default/Bashayr-Alhasani
   type: service
 
   parameters:
@@ -42,7 +42,6 @@ spec:
             catalogFilter:
               kind:
                 - System
-
     - title: Provide information about the git to used
       required:
         - git
@@ -74,7 +73,7 @@ spec:
                   type: string
                   description: Specify the GitHub Organization or User to register the repository
   steps:
-    - id: app_template
+    - id: app-template
       name: Generating the Application Source Code Component
       action: fetch:template
       input:
@@ -99,7 +98,8 @@ spec:
         sourcePath: ./tenant-app
         defaultBranch: develop
         protectDefaultBranch: false
-    - id: manifest_template
+
+    - id: manifest-template
       name: Generating the K8s Manifest Component
       action: fetch:template
       input:
@@ -115,7 +115,7 @@ spec:
           system: ${{ parameters.system }}
           description: ${{ parameters.description }}
         targetPath: ./tenant-manifest
-    
+
     - id: publish-manifest-to-github
       if: ${{ parameters.git == "github" }}
       name: Publish Manifest Repository to GitHub
